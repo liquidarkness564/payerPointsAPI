@@ -11,10 +11,18 @@ db.once('open', () => {
 
 const payerSchema = mongoose.Schema({
   payer: String,
+  points: Number
+});
+
+const transactionSchema = mongoose.Schema({
+  payer: String,
   points: Number,
-  timestamp: String
+  timestamp: Date
 })
 
 const Payer = mongoose.model('Payer', payerSchema);
+const Transaction = mongoose.model('Transaction', transactionSchema);
 
-module.exports = Payer;
+module.exports = {
+  Payer, Transaction
+}
