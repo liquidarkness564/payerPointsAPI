@@ -51,8 +51,13 @@ const App = () => {
       .catch(err => console.log('failed to post transaction'))
   }
 
-  const spendPayerPoints = () => {
-
+  const spendPayerPoints = (e, points) => {
+    e.preventDefault();
+    axios.put('/points', {points})
+      .then(res => {
+        setSpentPayers(res.data);
+        console.log(res.data);
+      })
   }
 
   return (
@@ -72,7 +77,20 @@ const App = () => {
         <form>
           <label htmlFor='spendPoints'>Points to Spend</label>
           <input onChange={handleInputChange} type='number' id='spendPoints' required></input>
-          <button>Spend Points</button>
+          <button onClick={(e) => spendPayerPoints(e, spendPoints)}>Spend Points</button>
+          <div>
+            {
+              spentPayers.map(payer => {
+                return (
+                  <div>
+                    <hr></hr>
+                    <h3>Payer: {payer.payer}</h3>
+                    <h3>Points: {payer.points}</h3>
+                  </div>
+                )
+              })
+            }
+          </div>
         </form>
       </div>
       <div style={{marginTop: '3rem'}}>

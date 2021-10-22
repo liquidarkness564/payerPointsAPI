@@ -93,6 +93,7 @@ module.exports = {
           res.end('You don\'t have enough points for that');
         } else {
           for (let j = 0; j < results.length; j++) {
+            if (results[j].points <= 0) { continue; }
             let exists = false;
             for (let i = 0; i < payers.length; i++) {
               if (payers[i].payer === results[j].payer && results[j].points !== 0) {
