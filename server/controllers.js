@@ -22,7 +22,7 @@ module.exports = {
         res.end('failed to find payer')
       } else {
         if (results1) {
-          models.Payer.updateOne({payer: req.body.payer}, {points: results1.points + req.body.points}, (err2, results2) => {
+          models.Payer.updateOne({payer: req.body.payer}, {points: results1.points + Number(req.body.points)}, (err2, results2) => {
             if (err2) {
               console.log('failed to update payer', err2);
               res.statusCode = 500;
@@ -30,7 +30,7 @@ module.exports = {
             } else {
               let newTrans = new models.Transaction({
                 payer: req.body.payer,
-                points: req.body.points,
+                points: Number(req.body.points),
                 timestamp: new Date()
               })
               newTrans.save()
@@ -48,13 +48,13 @@ module.exports = {
         } else {
           let newPayer = new models.Payer({
             payer: req.body.payer,
-            points: req.body.points
+            points: Number(req.body.points)
           });
           newPayer.save()
             .then(doc => {
               let newTrans = new models.Transaction({
                 payer: req.body.payer,
-                points: req.body.points,
+                points: Number(req.body.points),
                 timestamp: new Date()
               })
               newTrans.save()

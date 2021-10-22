@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server/server.js",
-    "start": "node server/server.js"
+    "start": "node server/server.js",
+    "watch": "webpack --mode development --watch",
+    "build": "webpack --mode development"
   },
   "repository": {
     "type": "git",
@@ -20,11 +21,20 @@
   },
   "homepage": "https://github.com/liquidarkness564/payerPointsAPI#readme",
   "dependencies": {
+    "axios": "^0.23.0",
     "express": "^4.17.1",
-    "mongoose": "^6.0.11"
+    "mongoose": "^6.0.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "babel-loader": "^8.2.3",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.14",
+    "webpack": "^5.59.1",
+    "webpack-cli": "^4.9.1"
   }
 }
