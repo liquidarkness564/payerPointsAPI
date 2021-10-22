@@ -31,7 +31,7 @@ const App = () => {
 
   const getPayers = (e) => {
     e.preventDefault();
-    axios.get('/points')
+    axios.get('http://18.224.64.250:3000/points')
       .then(res => {
         setAllPayers(res.data);
         console.log(res.data);
@@ -41,7 +41,7 @@ const App = () => {
 
   const performTransaction = (e, payer, points) => {
     e.preventDefault();
-    axios.post('/points', {payer, points})
+    axios.post('http://18.224.64.250:3000/points', {payer, points})
       .then(() => {
         setIsActive(true);
         setTimeout(() => {
@@ -53,7 +53,7 @@ const App = () => {
 
   const spendPayerPoints = (e, points) => {
     e.preventDefault();
-    axios.put('/points', {points})
+    axios.put('http://18.224.64.250:3000/points', {points})
       .then(res => {
         setSpentPayers(res.data);
         console.log(res.data);
